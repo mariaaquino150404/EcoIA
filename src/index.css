@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Custom brand green colors and dark backgrounds matching Sophisticated Dark theme */
+  --color-green-neon: #22c55e;
+  --color-green-dark-eco: #15803d;
+  --color-green-darker: #166534;
+  --color-[#0a0a0c]: #0a0a0c;
+  --color-[#0e0e11]: #0e0e11;
+  --color-space-glow: rgba(34, 197, 94, 0.15);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0a0a0c;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0c;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e1e24;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #15803d;
+}
+
+/* Glow effects for dark eco tech design */
+.neo-glow-border {
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.neo-glow-text {
+  text-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+}
+
+.neo-glow-radial {
+  background: radial-gradient(circle at center, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+}
+
