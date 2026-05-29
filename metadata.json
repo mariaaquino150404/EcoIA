@@ -1,0 +1,6 @@
+{
+  "name": "EcoIA",
+  "description": "Plataforma educacional para a disciplina Atividade Integradora sobre o impacto ecológico e consumo consciente da Inteligência Artificial.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
