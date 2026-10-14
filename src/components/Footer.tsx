@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Leaf, ArrowUp, Globe, Cpu, BookOpen } from 'lucide-react';
+import { Leaf, ArrowUp, Globe, Cpu, BookOpen, Eye } from 'lucide-react';
 
 interface FooterProps {
   onScrollTo: (id: string) => void;
@@ -7,6 +7,7 @@ interface FooterProps {
 
 export default function Footer({ onScrollTo }: FooterProps) {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [visitCount, setVisitCount] = useState<number>(41);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -14,6 +15,24 @@ export default function Footer({ onScrollTo }: FooterProps) {
     };
     window.addEventListener('scroll', toggleVisibility);
     return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
+
+  // Lógica do contador partindo de 41
+  useEffect(() => {
+    const INITIAL_COUNT = 41;
+    const storedCount = localStorage.getItem('ecoia_visit_count');
+    const hasVisitedInSession = sessionStorage.getItem('ecoia_visited_session');
+
+    let currentCount = storedCount ? parseInt(storedCount, 10) : INITIAL_COUNT;
+
+    // Incrementa apenas se for uma nova sessão de navegação
+    if (!hasVisitedInSession) {
+      currentCount = storedCount ? currentCount + 1 : INITIAL_COUNT;
+      localStorage.setItem('ecoia_visit_count', currentCount.toString());
+      sessionStorage.setItem('ecoia_visited_session', 'true');
+    }
+
+    setVisitCount(currentCount);
   }, []);
 
   const footerLinks = [
@@ -92,10 +111,17 @@ export default function Footer({ onScrollTo }: FooterProps) {
                 <span className="text-[#22c55e] font-bold mr-2">📅</span>
                 Ano Letivo: <span className="text-white ml-1">2026</span>
               </p>
-              <div className="pt-2">
+
+              {/* Badges: Projeto e Contador de Visitantes */}
+              <div className="pt-2 flex flex-wrap items-center gap-2">
                 <span className="inline-flex px-2 py-0.5 rounded text-[10px] uppercase font-mono tracking-widest bg-[#0e0e11] border border-white/5 text-white/40">
                   Projeto Acadêmico
                 </span>
+
+                <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded text-[10px] font-mono tracking-wide bg-[#15803d]/10 border border-[#22c55e]/25 text-[#22c55e]">
+                  <Eye className="w-3 h-3 text-[#22c55e]" />
+                  <span>{visitCount} acessos</span>
+                </div>
               </div>
             </div>
           </div>
